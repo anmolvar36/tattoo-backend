@@ -75,3 +75,12 @@ INSERT INTO stations (station_number, name, location) VALUES
 (3, 'Station 3', 'Zurich'),
 (4, 'Station 4', 'Zurich')
 ON DUPLICATE KEY UPDATE name=VALUES(name);
+
+-- 6. Manager Settings Table
+CREATE TABLE IF NOT EXISTS manager_settings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  opening_days JSON,
+  operating_hours JSON,
+  pricing JSON,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

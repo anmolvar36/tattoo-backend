@@ -6,6 +6,7 @@ import db, { checkDbConnection } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 import inquiryRoutes from './routes/inquiryRoutes.js';
+import managerSettingsRoutes from './routes/managerSettingsRoutes.js';
 
 dotenv.config();
 
@@ -69,6 +70,7 @@ const seedDefaultUsers = async () => {
 app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/inquiries', inquiryRoutes);
+app.use('/api/manager/settings', managerSettingsRoutes);
 
 // Healthcheck Route
 app.get('/api/health', (req, res) => {
