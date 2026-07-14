@@ -1,24 +1,23 @@
 import db from '../config/db.js';
 
-class InquiryModel {
-  static async create(inquiryData) {
-    const { name, email, message, submittedDate } = inquiryData;
-    const [result] = await db.execute(
-      `INSERT INTO inquiries (name, email, message, submitted_date) VALUES (?, ?, ?, ?)`,
-      [name, email, message, submittedDate]
+export const InquiryModel = {
+  create: async ({ name, email, message, submittedDate }) => {
+    const [result] = await db.query(
+      'INSERT INTO inquiries (name, email, message, submitted_date) VALUES (?, ?, ?, ?)',
+      [name || 'Newsletter Subscriber', email, message, submittedDate]
     );
     return result.insertId;
-  }
+  },
 
-  static async getAll() {
-    const [rows] = await db.execute('SELECT * FROM inquiries ORDER BY created_at DESC');
+  getAll: async () => {
+    const [rows] = await db.query('SELECT * FROM inquiries ORDER BY created_at DESC');
     return rows;
-  }
+  },
 
-  static async delete(id) {
-    const [result] = await db.execute('DELETE FROM inquiries WHERE id = ?', [id]);
+  delete: async (id) => {
+    const [result] = await db.query('DELETE FROM inquiries WHERE id = ?', [id]);
     return result.affectedRows > 0;
   }
-}
+};
 
 export default InquiryModel;
