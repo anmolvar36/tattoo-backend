@@ -7,6 +7,7 @@ import authRoutes from './routes/authRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 import inquiryRoutes from './routes/inquiryRoutes.js';
 import managerSettingsRoutes from './routes/managerSettingsRoutes.js';
+import printfulRoutes from './routes/printful.routes.js';
 
 dotenv.config();
 
@@ -71,6 +72,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/manager/settings', managerSettingsRoutes);
+app.use('/api/printful', printfulRoutes);
 
 // Healthcheck Route
 app.get('/api/health', (req, res) => {
